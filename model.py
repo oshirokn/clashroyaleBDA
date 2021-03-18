@@ -4,23 +4,30 @@ import os
 import csv
 from sklearn.svm import SVC
 
-for dirname, _, filenames in os.getcwd():
-    for filename in filenames:
-        print(os.path.join(dirname, filename))
-        
+def paths():
+    root = "."
+    dr=[]
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            #         print(os.path.join(path, name))
+            _= os.path.join(path, name)
+            if _.endswith('.csv'):
+                dr.append(_)
+    return dr
+dr = paths()
 
-csv_filename = ".\kaggle\input\clash-royale-season-18-dec-0320-dataset\BattlesStaging_01012021_WL_tagged.csv"
-chunk_size = 500000
 
-text_file_reader = pd.read_csv(csv_filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, nrows = n_rows, chunksize = chunk_size, index_col=0)
 dfList = []
-counter = 0
-
-for df in text_file_reader:
-    dfList.append(df)
-    counter= counter +1
-    print("Max rows read: " + str(chunk_size * counter) )
+for filename in dr:
+    text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, chunksize = 500000, index_col=0)
+    counter = 0
+    for df in text_file_reader:
+        dfList.append(df)
+        counter= counter +1
+        print("Max rows read: " + str(chunk_size * counter) )
 df = pd.concat(dfList,sort=False)
+print(df)
+
 
 columns = ['winner.card1.id', 'winner.card2.id','winner.card3.id', 'winner.card4.id','winner.card5.id', 'winner.card6.id','winner.card7.id', 'winner.card8.id']
 X = df[columns]
