@@ -1,6 +1,12 @@
 ---
 
 - step:
+    name: requirements
+    image: ecoron/python36-sklearn
+    command:
+      - pip install --disable-pip-version-check --quiet -r requirements.txt
+
+- step:
     name: model
     image: ecoron/python36-sklearn
     command:
