@@ -32,8 +32,8 @@ def parse_args():
         type=float,
         default=10,
     )
-    
-parse_args()
+if __name__ == '__main__':    
+    parse_args()
 
 dfList = []
 for filename in dr:
