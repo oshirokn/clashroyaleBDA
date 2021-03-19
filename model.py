@@ -3,17 +3,12 @@ import numpy as np
 import pandas as pd
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
-
 import numpy as np 
 import pandas as pd
 import os
 import csv
-
 import argparse
 import json
-import os
-
-
 from parse_layer_spec import add_layers
 from utils import use_valohai_inputs
 
@@ -89,7 +84,9 @@ def main():
     model = SVC(C=C, gamma=gamma)
     model.fit(X_train, y_train.values.ravel())
     accuracy = model.score(X_test, y_test)
-    print(accuracy)
+    # Get the output path from the Valohai machines environment variables
+    output_path = os.getenv('VH_OUTPUTS_DIR')
+    model.save(os.path.join(output_path, 'model.h5'))
     
 if __name__ == '__main__':    
     parse_args()
