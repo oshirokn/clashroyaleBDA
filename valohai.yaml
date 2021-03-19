@@ -3,7 +3,9 @@
 - step:
     name: model
     image: ecoron/python36-sklearn
-    command: python model.py {parameters}
+    command:
+        - pip install --disable-pip-version-check --quiet -r requirements.txt
+        - python model.py {parameters}
     inputs:
       - name: data
         default: swift://f8a5dbc8033343aea820c139245afe13/clashroyale
