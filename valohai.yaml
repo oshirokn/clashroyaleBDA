@@ -7,3 +7,14 @@
     inputs:
       - name: data
         default: swift://f8a5dbc8033343aea820c139245afe13/clashroyale
+    parameters:
+      - name: C
+        type: float
+        pass-as: --C={v}
+        description: SVC C parameter
+        default: 1
+      - name: gamma
+        type: float
+        pass-as: --gamma={v}
+        description: SVC gamma
+        default: 10
