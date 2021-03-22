@@ -9,8 +9,8 @@ import os
 import csv
 import argparse
 import json
-from parse_layer_spec import add_layers
-from utils import use_valohai_inputs
+#from parse_layer_spec import add_layers
+#from utils import use_valohai_inputs
 
 def paths():
     root = "."
