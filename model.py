@@ -15,7 +15,7 @@ import json
 def paths():
     INPUTS_DIR = os.getenv('VH_INPUTS_DIR', '.')
 
-    folders_ = ['BattlesStaging_01012021_WL_tagged',
+    folders_ = [
     'BattlesStaging_01012021_WL_tagged',
     'BattlesStaging_01032021_WL_tagged',
     'BattlesStaging_01042021_WL_tagged',
@@ -26,20 +26,20 @@ def paths():
     'BattlesStaging_12302020_WL_tagged',		
     'BattlesStaging_12312020_WL_tagged']
     
-    file_ = ['BattlesStaging_01012021_WL_tagged',
-    'BattlesStaging_01012021_WL_tagged',
-    'BattlesStaging_01032021_WL_tagged',
-    'BattlesStaging_01042021_WL_tagged',
-    'battlesStaging_12072020_to_12262020_WL_tagged',		
-    'battlesStaging_12272020_WL_tagged',		
-    'battlesStaging_12282020_WL_tagged',		
-    'BattlesStaging_12292020_WL_tagged',		
-    'BattlesStaging_12302020_WL_tagged',		
-    'BattlesStaging_12312020_WL_tagged']
+    file_ = [
+    'BattlesStaging_01012021_WL_tagged.csv',
+    'BattlesStaging_01032021_WL_tagged.csv',
+    'BattlesStaging_01042021_WL_tagged.csv',
+    'battlesStaging_12072020_to_12262020_WL_tagged.csv',		
+    'battlesStaging_12272020_WL_tagged.csv',		
+    'battlesStaging_12282020_WL_tagged.csv',		
+    'BattlesStaging_12292020_WL_tagged.csv',		
+    'BattlesStaging_12302020_WL_tagged.csv',		
+    'BattlesStaging_12312020_WL_tagged.csv']
 
     dr=[]
     for folder in folders_:
-        dr.append(os.path.join(INPUTS_DIR, folder, folder, '.csv'))
+        dr.append(os.path.join(INPUTS_DIR, folder))
     return dr
 
 def parse_args():
@@ -60,8 +60,21 @@ def parse_args():
     
 def main():
     dr = paths()
+    
+    file_ = [
+    'BattlesStaging_01012021_WL_tagged.csv',
+    'BattlesStaging_01032021_WL_tagged.csv',
+    'BattlesStaging_01042021_WL_tagged.csv',
+    'battlesStaging_12072020_to_12262020_WL_tagged.csv',		
+    'battlesStaging_12272020_WL_tagged.csv',		
+    'battlesStaging_12282020_WL_tagged.csv',		
+    'BattlesStaging_12292020_WL_tagged.csv',		
+    'BattlesStaging_12302020_WL_tagged.csv',		
+    'BattlesStaging_12312020_WL_tagged.csv']
+    
     dfList = []
-    for filename in dr:
+    for folder,file in zip(dr,file_):
+        filename = folder+file_
         text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, chunksize = 500000, index_col=0)
         counter = 0
         for df in text_file_reader:
