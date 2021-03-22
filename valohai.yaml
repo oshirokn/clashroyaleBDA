@@ -10,7 +10,7 @@
         - python model.py {parameters}
     inputs:
       - name: t1
-    default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01012021_WL_tagged/BattlesStaging_01012021_WL_tagged.csv
+        default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01012021_WL_tagged/BattlesStaging_01012021_WL_tagged.csv
     - name: t2
         default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01032021_WL_tagged/BattlesStaging_01032021_WL_tagged.csv
     - name: t3
