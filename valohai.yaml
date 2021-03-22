@@ -17,15 +17,15 @@
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01042021_WL_tagged/BattlesStaging_01042021_WL_tagged.csv
         - name: t4
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12072020_to_12262020_WL_tagged/BattlesStaging_12072020_to_12262020_WL_tagged.csv
-        - name: t6
+        - name: t5
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12272020_WL_tagged/BattlesStaging_12272020_WL_tagged.csv
-        - name: t7
+        - name: t6
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12282020_WL_tagged/BattlesStaging_12282020_WL_tagged.csv
-        - name: t8
+        - name: t7
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12292020_WL_tagged/BattlesStaging_12292020_WL_tagged.csv
-        - name: t9
+        - name: t8
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12302020_WL_tagged/BattlesStaging_12302020_WL_tagged.csv
-        - name: t10
+        - name: t9
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12312020_WL_tagged/BattlesStaging_12312020_WL_tagged.csv
     parameters:
       - name: C
