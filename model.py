@@ -39,7 +39,7 @@ def paths():
 
     dr=[]
     for folder in folders_:
-        dr.append(os.path.join(INPUTS_DIR, folder))
+        dr.append(os.path.join(INPUTS_DIR, file_))
     return dr
 
 def parse_args():
@@ -73,8 +73,8 @@ def main():
     '/BattlesStaging_12312020_WL_tagged.csv']
     
     dfList = []
-    for file in file_:
-        filename = '/valohai/inputs'+file
+    for file in  dr:
+        #filename = '/valohai/inputs'+file
         text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, chunksize = 500000, index_col=0)
         counter = 0
         for df in text_file_reader:
