@@ -20,7 +20,7 @@
         - name: t5
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12272020_WL_tagged/battlesStaging_12272020_WL_tagged.csv
         - name: t6
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12282020_WL_tagged/battlesStaging_12282020_WL_tagged.csv
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/battlesStaging_12282020_WL_tagged/battlesStaging_12282020_WL_tagged.csv
         - name: t7
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12292020_WL_tagged/BattlesStaging_12292020_WL_tagged.csv
         - name: t8
