@@ -52,11 +52,11 @@ def main():
     
     dr = paths() 
     print(os.listdir(os.getenv('VH_INPUTS_DIR', './inputs')))
-    
+    chunk_size = 500000
     dfList = []
     for file in  dr:
         filename = file
-        text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, chunksize = 500000, index_col=0)
+        text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, chunksize = chunk_size, index_col=0)
         counter = 0
         for df in text_file_reader:
             dfList.append(df)
