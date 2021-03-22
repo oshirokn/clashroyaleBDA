@@ -29,6 +29,7 @@ def paths():
     dr=[]
     for folder in folders_:
         dr.append(os.path.join(INPUTS_DIR, folder))
+        print(dr[-1])
     return dr
 
 def parse_args():
