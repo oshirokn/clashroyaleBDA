@@ -21,6 +21,7 @@ def paths():
             _= os.path.join(path, name)
             if _.endswith('.csv'):
                 dr.append(_)
+                print(_)
     return dr
 
 def parse_args():
@@ -36,6 +37,9 @@ def parse_args():
         default=10,
     )
 
+
+    
+    
 def main():
     dr = paths()
     dfList = []
@@ -90,4 +94,5 @@ def main():
     
 if __name__ == '__main__':    
     parse_args()
+    paths()
     main()
