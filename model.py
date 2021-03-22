@@ -59,7 +59,7 @@ def parse_args():
         
 def main():
     
-    dr = paths(os.listdir(path)) 
+    dr = paths() 
     print(os.listdir(INPUTS_DIR))
     
     dfList = []
