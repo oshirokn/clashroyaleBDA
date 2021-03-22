@@ -33,22 +33,10 @@ def paths():
         dr.append(os.path.join(INPUTS_DIR, folder))
     return dr
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '--C',
-        type=float,
-        default=1,
-    )
-    parser.add_argument(
-        '--gamma',
-        type=float,
-        default=10,
-    )
 
 
         
-def main():
+def main(flags):
     
     dr = paths() 
     print(os.listdir(os.getenv('VH_INPUTS_DIR', './inputs')))
@@ -97,14 +85,28 @@ def main():
 
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = SVC(C=1, gamma=10)
+    model = SVC(C=flags.C, gamma=flags.gamma)
     model.fit(X_train, y_train.values.ravel())
     accuracy = model.score(X_test, y_test)
     # Get the output path from the Valohai machines environment variables
     output_path = os.getenv('VH_OUTPUTS_DIR')
     model.save(os.path.join(output_path, 'model.h5'))
     
+    
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--C',
+        type=float,
+        default=1,
+    )
+    parser.add_argument(
+        '--gamma',
+        type=float,
+        default=10,
+    )
+
 if __name__ == '__main__':    
-    parse_args()
+    flags = parse_args()
     paths()
-    main()
+    main(flags)
