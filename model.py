@@ -74,7 +74,7 @@ def main():
     
     dfList = []
     for file in  dr:
-        #filename = '/valohai/inputs'+file
+        filename = file
         text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, chunksize = 500000, index_col=0)
         counter = 0
         for df in text_file_reader:
