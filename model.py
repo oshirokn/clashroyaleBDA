@@ -25,6 +25,17 @@ def paths():
     'BattlesStaging_12292020_WL_tagged',		
     'BattlesStaging_12302020_WL_tagged',		
     'BattlesStaging_12312020_WL_tagged']
+    
+    file_ = ['BattlesStaging_01012021_WL_tagged',
+    'BattlesStaging_01012021_WL_tagged',
+    'BattlesStaging_01032021_WL_tagged',
+    'BattlesStaging_01042021_WL_tagged',
+    'battlesStaging_12072020_to_12262020_WL_tagged',		
+    'battlesStaging_12272020_WL_tagged',		
+    'battlesStaging_12282020_WL_tagged',		
+    'BattlesStaging_12292020_WL_tagged',		
+    'BattlesStaging_12302020_WL_tagged',		
+    'BattlesStaging_12312020_WL_tagged']
 
     dr=[]
     for folder in folders_:
