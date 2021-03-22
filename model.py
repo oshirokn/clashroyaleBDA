@@ -60,7 +60,7 @@ def parse_args():
 def main():
     
     dr = paths() 
-    print(os.listdir(INPUTS_DIR))
+    print(os.listdir(os.getenv('VH_INPUTS_DIR', './inputs')))
     
     dfList = []
     for file in  dr:
