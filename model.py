@@ -105,6 +105,8 @@ def parse_args():
         type=float,
         default=10,
     )
+    flags = parser.parse_args()
+    return flags
 
 if __name__ == '__main__':    
     flags = parse_args()
