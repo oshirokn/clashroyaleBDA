@@ -10,7 +10,7 @@
         - python model.py {parameters}
     inputs:
       - name: data
-        default: swift://f8a5dbc8033343aea820c139245afe13/clashroyale
+        default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/
     parameters:
       - name: C
         type: float
