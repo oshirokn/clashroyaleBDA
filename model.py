@@ -13,7 +13,7 @@ import json
 #from utils import use_valohai_inputs
 
 def paths():
-    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', '.')
+    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
 
     folders_ = [
     'BattlesStaging_01012021_WL_tagged',
@@ -38,8 +38,8 @@ def paths():
     'BattlesStaging_12312020_WL_tagged.csv']
 
     dr=[]
-    for folder in folders_:
-        dr.append(os.path.join(INPUTS_DIR, file_))
+    for folder in file_:
+        dr.append(os.path.join(INPUTS_DIR, folder))
     return dr
 
 def parse_args():
