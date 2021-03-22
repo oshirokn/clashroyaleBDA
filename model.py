@@ -56,21 +56,11 @@ def parse_args():
     )
 
 
-    
-    
+        
 def main():
-    dr = paths()
     
-    file_ = [
-    '/BattlesStaging_01012021_WL_tagged.csv',
-    '/BattlesStaging_01032021_WL_tagged.csv',
-    '/BattlesStaging_01042021_WL_tagged.csv',
-    '/battlesStaging_12072020_to_12262020_WL_tagged.csv',		
-    '/battlesStaging_12272020_WL_tagged.csv',		
-    '/battlesStaging_12282020_WL_tagged.csv',		
-    '/BattlesStaging_12292020_WL_tagged.csv',		
-    '/BattlesStaging_12302020_WL_tagged.csv',		
-    '/BattlesStaging_12312020_WL_tagged.csv']
+    dr = paths(os.listdir(path)) 
+    print(os.listdir(INPUTS_DIR))
     
     dfList = []
     for file in  dr:
