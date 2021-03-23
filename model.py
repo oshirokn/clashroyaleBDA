@@ -47,7 +47,7 @@ def main(flags):
     df = pd.concat(dfList,sort=False)
     df = df[:500,:]
     
-    print(df.shape, df.memory_usage(index=True).sum()
+    print(df.shape, df.memory_usage(index=True).sum())
     print('Data is loaded and stored into a dataframe')
 
     columns = ['winner.card1.id', 'winner.card2.id','winner.card3.id', 'winner.card4.id','winner.card5.id', 'winner.card6.id','winner.card7.id', 'winner.card8.id']
