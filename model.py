@@ -10,6 +10,7 @@ import os
 import csv
 import argparse
 import json
+from joblib import dump, load
 #from parse_layer_spec import add_layers
 #from utils import use_valohai_inputs
 
@@ -19,8 +20,7 @@ def paths():
     _ = os.listdir(INPUTS_DIR)
     
     file_ = [
-    't1/BattlesStaging_01012021_WL_tagged.csv',
-    't2/BattlesStaging_01032021_WL_tagged.csv']
+    't1/BattlesStaging_01012021_WL_tagged.csv']
 
     dr=[]
     for folder in file_:
@@ -45,8 +45,9 @@ def main(flags):
             counter= counter +1
             print("Max rows read: " + str(chunk_size * counter) )
     df = pd.concat(dfList,sort=False)
+    df = df[:500,:]
     
-    
+    print(df.shape, df.memory_usage(index=True).sum()
     print('Data is loaded and stored into a dataframe')
 
     columns = ['winner.card1.id', 'winner.card2.id','winner.card3.id', 'winner.card4.id','winner.card5.id', 'winner.card6.id','winner.card7.id', 'winner.card8.id']
@@ -92,8 +93,11 @@ def main(flags):
     print('Accuracy of test:',accuracy)
     
     # Get the output path from the Valohai machines environment variables
-    output_path = os.getenv('VH_OUTPUTS_DIR')
-    model.save(os.path.join(output_path, 'model.h5'))
+    outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
+    if not os.path.isdir(outputs_dir):
+        os.makedirs(outputs_dir)
+    save_path = os.path.join(outputs_dir, 'test.joblib')
+    joblib.dump(model, save_path) 
     print('Model was saved')
     
     
