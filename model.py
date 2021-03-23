@@ -2,6 +2,7 @@
 import numpy as np 
 import pandas as pd
 from sklearn.svm import SVC
+from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 import numpy as np 
 import pandas as pd
@@ -83,7 +84,7 @@ def main(flags):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     print('Test train split completed')
     
-    model = SVC(C=flags.C, gamma=flags.gamma, cache_size=4000)
+    model = LinearSVC(C=flags.C,  random_state=0)
     model.fit(X_train, y_train.values.ravel())
     print('Training completed')
     
