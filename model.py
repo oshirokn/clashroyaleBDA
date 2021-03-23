@@ -51,7 +51,9 @@ def main(flags):
             counter= counter +1
             print("Max rows read: " + str(chunk_size * counter) )
     df = pd.concat(dfList,sort=False)
-    #print(df)
+    
+    
+    print('Data is loaded and stored into a dataframe')
 
     columns = ['winner.card1.id', 'winner.card2.id','winner.card3.id', 'winner.card4.id','winner.card5.id', 'winner.card6.id','winner.card7.id', 'winner.card8.id']
     X = df[columns]
@@ -83,14 +85,22 @@ def main(flags):
     y = pd.concat([y, y2], ignore_index=True, sort=True)
     y.columns = ['result']
 
-
+    print('Features and labels are ready now')
+  
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = SVC(C=flags.C, gamma=flags.gamma)
+    print('Test train split completed')
+    
+    model = SVC(C=flags.C, gamma=flags.gamma, n_jobs=8)
     model.fit(X_train, y_train.values.ravel())
+    print('Training completed')
+    
     accuracy = model.score(X_test, y_test)
+    print('Accuracy of test:',accuracy)
+    
     # Get the output path from the Valohai machines environment variables
     output_path = os.getenv('VH_OUTPUTS_DIR')
     model.save(os.path.join(output_path, 'model.h5'))
+    print('Model was saved')
     
     
 def parse_args():
