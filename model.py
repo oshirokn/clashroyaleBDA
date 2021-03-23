@@ -97,7 +97,7 @@ def main(flags):
     if not os.path.isdir(outputs_dir):
         os.makedirs(outputs_dir)
     save_path = os.path.join(outputs_dir, 'test.joblib')
-    joblib.dump(model, save_path) 
+    dump(model, save_path) 
     print('Model was saved')
     
     
