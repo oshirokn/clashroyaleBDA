@@ -83,7 +83,7 @@ def main(flags):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     print('Test train split completed')
     
-    model = SVC(C=flags.C, gamma=flags.gamma, n_jobs=8)
+    model = SVC(C=flags.C, gamma=flags.gamma, cache_size=4000)
     model.fit(X_train, y_train.values.ravel())
     print('Training completed')
     
