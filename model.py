@@ -1,8 +1,6 @@
-
 import numpy as np 
 import pandas as pd
-from sklearn.svm import SVC
-from sklearn.svm import LinearSVC
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import numpy as np 
 import pandas as pd
@@ -20,7 +18,15 @@ def paths():
     _ = os.listdir(INPUTS_DIR)
     
     file_ = [
-    't1/BattlesStaging_01012021_WL_tagged.csv']
+    't1/BattlesStaging_01012021_WL_tagged.csv',
+    't2/BattlesStaging_01032021_WL_tagged.csv',
+    't3/BattlesStaging_01042021_WL_tagged.csv',
+    't4/battlesStaging_12072020_to_12262020_WL_tagged.csv',		
+    't5/battlesStaging_12272020_WL_tagged.csv',		
+    't6/battlesStaging_12282020_WL_tagged.csv',		
+    't7/BattlesStaging_12292020_WL_tagged.csv',		
+    't8/BattlesStaging_12302020_WL_tagged.csv',		
+    't9/BattlesStaging_12312020_WL_tagged.csv']
 
     dr=[]
     for folder in file_:
@@ -43,9 +49,9 @@ def main(flags):
         for df in text_file_reader:
             dfList.append(df)
             counter= counter +1
-            print("Max rows read: " + str(chunk_size * counter) )
+            #print("Max rows read: " + str(chunk_size * counter) )
     df = pd.concat(dfList,sort=False)
-    df = df.iloc[:500,:]
+    
     
     print(df.shape, df.memory_usage(index=True).sum())
     print('Data is loaded and stored into a dataframe')
@@ -85,7 +91,13 @@ def main(flags):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     print('Test train split completed')
     
-    model = LinearSVC(C=flags.C,  random_state=0)
+    model = RandomForestClassifier(
+        criterion=flags.criterion,
+        max_depth=flags.max_depth,
+        min_samples_leaf=flags.min_samples_leaf,
+        n_estimators=flags.n_estimators,
+        n_jobs=flags.n_jobs
+        )
     model.fit(X_train, y_train.values.ravel())
     print('Training completed')
     
@@ -99,19 +111,40 @@ def main(flags):
     save_path = os.path.join(outputs_dir, 'test.joblib')
     dump(model, save_path) 
     print('Model was saved')
+
+    {'criterion': 'entropy',
+ 'max_depth': 25,
+ 'min_samples_leaf': 1,
+ 'n_estimators': 50,
+ 'n_jobs': 4}
     
     
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--C',
+        '--criterion',
+        type=float,
+        default='entropy',
+    )
+    parser.add_argument(
+        '--max_depth',
+        type=float,
+        default=25,
+    )
+    parser.add_argument(
+        '--min_samples_leaf',
         type=float,
         default=1,
     )
     parser.add_argument(
-        '--gamma',
+        '--n_estimators',
         type=float,
-        default=10,
+        default=50,
+    )
+    parser.add_argument(
+        '--n_jobs',
+        type=float,
+        default=-1,
     )
     flags = parser.parse_args()
     return flags
