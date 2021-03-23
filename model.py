@@ -123,7 +123,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--criterion',
-        type=float,
+        type=string,
         default='entropy',
     )
     parser.add_argument(
