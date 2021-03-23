@@ -32,7 +32,7 @@
         type: string
         pass-as: --C={v}
         description: entropy or gini
-        default: 1
+        default: entropy
       - name: max_depth
         type: integer
         pass-as: --max_depth={v}
