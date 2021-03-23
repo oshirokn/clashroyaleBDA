@@ -30,7 +30,7 @@
     parameters:
       - name: criterion
         type: string
-        pass-as: --C={v}
+        pass-as: --criterion={v}
         description: entropy or gini
         default: entropy
       - name: max_depth
