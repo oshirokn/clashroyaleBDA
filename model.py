@@ -123,27 +123,27 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--criterion',
-        type=string,
+        type=str,
         default='entropy',
     )
     parser.add_argument(
         '--max_depth',
-        type=float,
+        type=int,
         default=25,
     )
     parser.add_argument(
         '--min_samples_leaf',
-        type=float,
+        type=int,
         default=1,
     )
     parser.add_argument(
         '--n_estimators',
-        type=float,
+        type=int,
         default=50,
     )
     parser.add_argument(
         '--n_jobs',
-        type=float,
+        type=int,
         default=-1,
     )
     flags = parser.parse_args()
