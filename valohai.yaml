@@ -28,13 +28,28 @@
         - name: t9
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12312020_WL_tagged/BattlesStaging_12312020_WL_tagged.csv
     parameters:
-      - name: C
-        type: float
+      - name: criterion
+        type: str
         pass-as: --C={v}
-        description: SVC C parameter
+        description: entropy or gini
         default: 1
-      - name: gamma
-        type: float
-        pass-as: --gamma={v}
-        description: SVC gamma
-        default: 10
+      - name: max_depth
+        type: int
+        pass-as: --max_depth={v}
+        description: max depth
+        default: 25
+      - name: min_samples_leaf
+        type: int
+        pass-as: --min_samples_leaf={v}
+        description: min_samples_leaf
+        default: 1
+      - name: n_estimators
+        type: int
+        pass-as: --n_estimators={v}
+        description: n_estimators
+        default: 50
+      - name: n_jobs
+        type: int
+        pass-as: --n_jobs={v}
+        description: n_jobs
+        default: -1
