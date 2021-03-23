@@ -32,7 +32,7 @@ def paths():
 def main(flags):
     
     dr = paths() 
-    print(os.listdir(os.getenv('VH_INPUTS_DIR', './inputs')))
+    #print(os.listdir(os.getenv('VH_INPUTS_DIR', './inputs')))
     chunk_size = 500000
     dfList = []
     for file in  dr:
