@@ -51,7 +51,7 @@ def main(flags):
             counter= counter +1
             print("Max rows read: " + str(chunk_size * counter) )
     df = pd.concat(dfList,sort=False)
-    print(df)
+    #print(df)
 
     columns = ['winner.card1.id', 'winner.card2.id','winner.card3.id', 'winner.card4.id','winner.card5.id', 'winner.card6.id','winner.card7.id', 'winner.card8.id']
     X = df[columns]
