@@ -45,7 +45,7 @@ def main(flags):
             counter= counter +1
             print("Max rows read: " + str(chunk_size * counter) )
     df = pd.concat(dfList,sort=False)
-    df = df[:500,:]
+    df = df.iloc[:500,:]
     
     print(df.shape, df.memory_usage(index=True).sum())
     print('Data is loaded and stored into a dataframe')
