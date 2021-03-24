@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
 import numpy as np 
 import pandas as pd
 import os
@@ -104,7 +105,7 @@ def main(flags):
     
     accuracy = model.score(X_test, y_test)
     print('Accuracy of test:',accuracy)
-    print("Cross-validation scores:\n{}".format(cross_val_score(model, X_test, y_test, cv=7)))
+    print("Cross-validation scores:\n{}".format(cross_val_score(model, X_train, y_train, cv=7)))
     
     # Get the output path from the Valohai machines environment variables
     outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
