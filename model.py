@@ -94,7 +94,7 @@ def main(flags):
     print('Test train split completed')
     
     model = KNeighborsClassifier(
-        n_neighbors=10,
+        n_neighbors=flags.n_neighbors,
         n_jobs=flags.n_jobs
         )
     model.fit(X_train, y_train.values.ravel())
@@ -107,7 +107,7 @@ def main(flags):
     outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
     if not os.path.isdir(outputs_dir):
         os.makedirs(outputs_dir)
-    save_path = os.path.join (outputs_dir, 'test.joblib')
+    save_path = os.path.join (outputs_dir, 'test-kn.joblib')
     dump(model, save_path) 
     print('Model was saved')
 
@@ -122,13 +122,13 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--n_neighbors',
-        type=float,
-        default='entropy',
+        type=int,
+        default=10,
     )
     parser.add_argument(
         '--n_jobs',
-        type=float,
-        default=-1,
+        type=int,
+        default=8,
     )
     flags = parser.parse_args()
     return flags
