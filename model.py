@@ -110,7 +110,7 @@ def main(flags):
     outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
     if not os.path.isdir(outputs_dir):
         os.makedirs(outputs_dir)
-    save_path = os.path.join(outputs_dir, 'test.joblib')
+    save_path = os.path.join(outputs_dir, 'model.joblib')
     dump(model, save_path) 
     print('Model was saved')
 
