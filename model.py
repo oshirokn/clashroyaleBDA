@@ -93,11 +93,8 @@ def main(flags):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     print('Test train split completed')
     
-    model = RandomForestClassifier(
-        criterion=flags.criterion,
-        max_depth=flags.max_depth,
-        min_samples_leaf=flags.min_samples_leaf,
-        n_estimators=flags.n_estimators,
+    model = KNeighborsClassifier(
+        n_neighbors=10,
         n_jobs=flags.n_jobs
         )
     model.fit(X_train, y_train.values.ravel())
@@ -105,13 +102,12 @@ def main(flags):
     
     accuracy = model.score(X_test, y_test)
     print('Accuracy of test:',accuracy)
-    print("Cross-validation scores:\n{}".format(cross_val_score(model, X_train, y_train, cv=7)))
     
     # Get the output path from the Valohai machines environment variables
     outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
     if not os.path.isdir(outputs_dir):
         os.makedirs(outputs_dir)
-    save_path = os.path.join(outputs_dir, 'model.joblib')
+    save_path = os.path.join (outputs_dir, 'test.joblib')
     dump(model, save_path) 
     print('Model was saved')
 
@@ -125,28 +121,13 @@ def main(flags):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--criterion',
-        type=str,
+        '--n_neighbors',
+        type=float,
         default='entropy',
     )
     parser.add_argument(
-        '--max_depth',
-        type=int,
-        default=25,
-    )
-    parser.add_argument(
-        '--min_samples_leaf',
-        type=int,
-        default=1,
-    )
-    parser.add_argument(
-        '--n_estimators',
-        type=int,
-        default=50,
-    )
-    parser.add_argument(
         '--n_jobs',
-        type=int,
+        type=float,
         default=-1,
     )
     flags = parser.parse_args()
