@@ -9,6 +9,7 @@ import csv
 import argparse
 import json
 from joblib import dump, load
+from sklearn.model_selection import KFold
 #from parse_layer_spec import add_layers
 #from utils import use_valohai_inputs
 
@@ -103,6 +104,7 @@ def main(flags):
     
     accuracy = model.score(X_test, y_test)
     print('Accuracy of test:',accuracy)
+    print("Cross-validation scores:\n{}".format(cross_val_score(model, X_test, y_test, cv=7)))
     
     # Get the output path from the Valohai machines environment variables
     outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
