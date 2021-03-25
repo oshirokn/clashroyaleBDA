@@ -105,7 +105,7 @@ def main(flags):
     accuracy = model.score(X_test, y_test)
     print('Accuracy of test:',accuracy)
     kfold = KFold(n_splits=5)
-    print("Cross-validation scores:\n{}".format(cross_val_score(model, X_train, y_train, cv=kfold)))
+    print("Cross-validation scores:\n{}".format(cross_val_score(model, X, y, cv=kfold)))
     
     # Get the output path from the Valohai machines environment variables
     outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
