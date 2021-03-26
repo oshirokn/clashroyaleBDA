@@ -1,7 +1,7 @@
 ---
 
   - step:
-    name: model
+    name: prepro
     image: sergiocristia/bda-clashroyale
     command:
         - pip install --disable-pip-version-check --quiet -r requirements.txt
@@ -28,7 +28,7 @@
 
 
 - step:
-    name: model
+    name: train
     image: sergiocristia/bda-clashroyale
     command:
         - pip install --disable-pip-version-check --quiet -r requirements.txt
