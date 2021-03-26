@@ -51,7 +51,7 @@ def save(X,y):
     save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
 
 def test_saved():
-    path = INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
+    path = os.getenv('VH_INPUTS_DIR', './inputs')
     print(os.listdir(path))
     print(os.listdir(path))
 
