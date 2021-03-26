@@ -1,23 +1,21 @@
 # 
 import os
 from scripts.features import features
+from numpy import asarray
+from numpy import save
 
 def paths():
-    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
-
-    _ = os.listdir(INPUTS_DIR)
-    
-    file_ = [
+    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')   
+    folders = [
     't1/BattlesStaging_01012021_WL_tagged.csv']
-
     dr=[]
-    for folder in file_:
+    for folder in folders:
         dr.append(os.path.join(INPUTS_DIR, folder))
     return dr
 
 def main(dr):
 
-     dr = paths() 
+    dr = paths() 
     chunk_size = 500000
     dfList = []
     for file in  dr:
@@ -45,6 +43,17 @@ def main(dr):
     return X,y
 
 def save():
+    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
+    save(os.path.join(INPUTS_DIR, 'features.npy'), X)
+    save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
+
+
+
+def test_saved():
+    path = INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
+    print(os.listdir(path))
+    print(os.listdir(path))
+
 
 
 if __name__ == '__main__':    
