@@ -1,6 +1,6 @@
 ---
 
-  - step:
+- step:
     name: prepro
     image: sergiocristia/bda-clashroyale
     command:
