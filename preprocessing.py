@@ -1,8 +1,10 @@
 # 
 import os
+import pandas as pd
 from scripts.features import features
 from numpy import asarray
 from numpy import save
+
 
 def paths():
     INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')   
