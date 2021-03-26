@@ -44,12 +44,10 @@ def main(dr):
                         np.zeros((int(0.5*X.shape[0]),1))))
     return X,y
 
-def save():
+def save(X,y):
     INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
     save(os.path.join(INPUTS_DIR, 'features.npy'), X)
     save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
-
-
 
 def test_saved():
     path = INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
@@ -60,6 +58,9 @@ def test_saved():
 
 if __name__ == '__main__':    
     dr = paths()
-    main(dr)
+    X,y = main(dr)
+    save(X,y)
+    test_saved()
+
 
 
