@@ -1,3 +1,8 @@
+import os
+import pandas as pd
+from scripts.features import features
+from numpy import asarray
+from numpy import save
 
 def features():
     win_columns = ['winner.card1.id', 

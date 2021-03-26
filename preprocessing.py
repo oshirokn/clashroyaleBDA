@@ -16,6 +16,7 @@ def paths():
     return dr
 
 def main(dr):
+    import pandas as pd
 
     dr = paths() 
     chunk_size = 500000
