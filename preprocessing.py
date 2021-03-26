@@ -23,7 +23,7 @@ def main(dr):
     dfList = []
     for file in  dr:
         filename = file
-        text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', quoting=csv.QUOTE_MINIMAL, chunksize = chunk_size, index_col=0)
+        text_file_reader = pd.read_csv(filename, engine='python',encoding='utf-8-sig', chunksize = chunk_size, index_col=0)
         for df in text_file_reader:
             dfList.append(df)
     if len(dfList)>1:
