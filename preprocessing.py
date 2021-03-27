@@ -63,7 +63,7 @@ def test_saved():
 if __name__ == '__main__':    
     dr = paths()
     X,y = main(dr)
-    save(X,y)
+    #save(X,y)
     test_saved()
 
 
