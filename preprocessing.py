@@ -4,6 +4,7 @@ import os
 import pandas as pd
 from numpy import asarray
 import numpy as np
+import pandas as pd
 
 
 def paths():
@@ -16,7 +17,7 @@ def paths():
     return dr
 
 def main():
-    import pandas as pd
+    print('Initializing main...')
 
     dr = paths() 
     chunk_size = 500000
@@ -30,6 +31,8 @@ def main():
         df = pd.concat(dfList,sort=False)
     else:
         df = dfList[0]
+    
+    print('CSV as dataframes. Calculating features and labels...')
 
     win_columns,loose_columns = features()
 
@@ -45,15 +48,19 @@ def main():
                         np.zeros((int(0.5*X.shape[0]),1))))
 
     print(X.values.shape,y.shape)
+    print('Main done')
 
     return X.values,y
 
-# def save(X,y):
-#     INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
-#     np.save(os.path.join(INPUTS_DIR, 'features.npy'), X)
-#     np.save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
+def save(X,y):
+    print('Save features and labels as npy...')
+    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
+    np.save(os.path.join(INPUTS_DIR, 'features.npy'), X)
+    np.save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
+    print('Save done')
 
 def test_saved():
+    
     path = os.getenv('VH_INPUTS_DIR', './inputs')
     print(os.listdir(path))
     print(os.listdir(path))
@@ -62,7 +69,7 @@ def test_saved():
 
 if __name__ == '__main__':    
     X,y = main()
-    #save(X,y)
+    save(X,y)
     test_saved()
 
 
