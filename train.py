@@ -12,7 +12,7 @@ def paths():
     path_features = os.path.join(INPUTS_DIR, 'features/features.npy')
     return path_labels, path_features
 
-def main():
+def main(flags):
     path_labels, path_features = paths()
     print('Loading data ...')
     y = np.load(path_labels)
@@ -46,6 +46,6 @@ def parse_args():
     return flags
 
 if __name__ == '__main__':
-    parse_args()
+    flags = parse_args()
     paths()
     main()
