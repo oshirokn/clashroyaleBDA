@@ -63,7 +63,6 @@ def test_saved():
     
     path = os.getenv('VH_INPUTS_DIR', './inputs')
     print(os.listdir(path))
-    print(os.listdir(path))
 
 
 
