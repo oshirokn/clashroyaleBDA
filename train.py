@@ -9,7 +9,7 @@ import argparse
 def paths():
     INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')   
     path_labels = os.path.join(INPUTS_DIR, 'labels/labels.npy')
-    path_labels = os.path.join(INPUTS_DIR, 'features/features.npy')
+    path_features = os.path.join(INPUTS_DIR, 'features/features.npy')
     return path_labels, path_features
 
 def main():
