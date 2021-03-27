@@ -54,9 +54,11 @@ def main():
 
 def save(X,y):
     print('Save features and labels as npy...')
-    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
-    np.save(os.path.join(INPUTS_DIR, 'features.npy'), X)
-    np.save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
+    outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
+    if not os.path.isdir(outputs_dir):
+        os.makedirs(outputs_dir)
+    np.save(os.path.join(outputs_dir, 'features.npy'), X)
+    np.save(os.path.join(outputs_dir, 'labels.npy'), y)
     print('Save done')
 
 def test_saved():
