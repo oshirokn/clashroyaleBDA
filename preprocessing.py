@@ -1,9 +1,8 @@
 # 
+from scripts.features import features
 import os
 import pandas as pd
-from scripts.features import features
 from numpy import asarray
-from numpy import save
 import numpy as np
 
 
@@ -44,12 +43,15 @@ def main(dr):
     # Labels
     y = np.concatenate((np.ones((int(0.5*X.shape[0]),1)),
                         np.zeros((int(0.5*X.shape[0]),1))))
-    return X,y
 
-def save(X,y):
-    INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
-    save(os.path.join(INPUTS_DIR, 'features.npy'), X)
-    save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
+    print(X.values.shape,y.shape)
+
+    return X.values,y
+
+# def save(X,y):
+#     INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')
+#     np.save(os.path.join(INPUTS_DIR, 'features.npy'), X)
+#     np.save(os.path.join(INPUTS_DIR, 'labels.npy'), y)
 
 def test_saved():
     path = os.getenv('VH_INPUTS_DIR', './inputs')
