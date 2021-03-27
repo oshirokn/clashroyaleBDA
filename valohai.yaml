@@ -9,6 +9,7 @@
     inputs:
         - name: t1
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01012021_WL_tagged/BattlesStaging_01012021_WL_tagged.csv
+          
 
 - step:
     name: train
@@ -19,6 +20,19 @@
     inputs:
         - name: labels
           default: datum://017872a8-c08f-c013-febf-945f93448c8d
+        - name: features
+          default: datum://017872a8-b76f-4ae3-01f8-699c54a5dfb1
+    parameters:
+      - name: n_neighbors
+        type: integer
+        pass-as: --n_neighbors={v}
+        description: n_neighbors
+        default: 10
+      - name: n_jobs
+        type: integer
+        pass-as: --n_jobs={v}
+        description: n_jobs
+        default: 8
 
 
 - step:
