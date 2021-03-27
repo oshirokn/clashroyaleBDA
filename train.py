@@ -24,7 +24,9 @@ def main(flags):
         n_neighbors=flags.n_neighbors,
         n_jobs=flags.n_jobs
         )
-    clf.fit(X, y.ravel())
+    y=y.ravel()
+    print(y.shape)
+    clf.fit(X, y)
     print('Training completed')
     
     kfold = KFold(n_splits=5)
