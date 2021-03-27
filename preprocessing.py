@@ -15,7 +15,7 @@ def paths():
         dr.append(os.path.join(INPUTS_DIR, folder))
     return dr
 
-def main(dr):
+def main():
     import pandas as pd
 
     dr = paths() 
@@ -61,8 +61,7 @@ def test_saved():
 
 
 if __name__ == '__main__':    
-    dr = paths()
-    X,y = main(dr)
+    X,y = main()
     #save(X,y)
     test_saved()
 
