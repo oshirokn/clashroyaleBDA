@@ -16,6 +16,9 @@
     command:
         - pip install --disable-pip-version-check --quiet -r requirements.txt
         - python train.py
+    inputs:
+        - name: t1
+          default: datum://017872a8-c08f-c013-febf-945f93448c8d
 
 
 - step:
