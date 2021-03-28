@@ -18,6 +18,9 @@ def main(flags):
     y = np.load(path_labels)
     X = np.load(path_features)
     print('Loading completed.')
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    print('Test train split completed')
     
 
     clf = KNeighborsClassifier(
@@ -26,11 +29,14 @@ def main(flags):
         )
     y=y.ravel()
     print(y.shape)
-    clf.fit(X, y)
+    clf.fit(X_train, y_train)
     print('Training completed')
+
+    accuracy = model.score(X_test, y_test)
+    print('Accuracy of test:',accuracy)
     
-    kfold = KFold(n_splits=5)
-    print("Cross-validation scores:\n{}".format(cross_val_score(clf, X, y, cv=kfold)))
+    #kfold = KFold(n_splits=flags.n_splits)
+    #print("Cross-validation scores:\n{}".format(cross_val_score(clf, X, y, cv=kfold)))
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -43,6 +49,11 @@ def parse_args():
         '--n_jobs',
         type=int,
         default=8,
+    )
+    parser.add_argument(
+        '--n_splits',
+        type=int,
+        default=3,
     )
     flags = parser.parse_args()
     return flags

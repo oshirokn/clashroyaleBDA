@@ -33,6 +33,11 @@
         pass-as: --n_jobs={v}
         description: n_jobs
         default: 8
+      - name: n_splits
+        type: integer
+        pass-as: --n_splits={v}
+        description: n_splits
+        default: 3
 
 
 - step:
