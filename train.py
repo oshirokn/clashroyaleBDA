@@ -33,7 +33,7 @@ def main(flags):
     clf.fit(X_train, y_train)
     print('Training completed')
 
-    accuracy = model.score(X_test, y_test)
+    accuracy = clf.score(X_test, y_test)
     print('Accuracy of test:',accuracy)
     
     #kfold = KFold(n_splits=flags.n_splits)
