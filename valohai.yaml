@@ -63,7 +63,7 @@
         - pip install --disable-pip-version-check --quiet -r requirements.txt
         - python train_forest.py {parameters}
     inputs:
-      - name: labels
+        - name: labels
           default: datum://017872a8-c08f-c013-febf-945f93448c8d
         - name: features
           default: datum://017872a8-b76f-4ae3-01f8-699c54a5dfb1
