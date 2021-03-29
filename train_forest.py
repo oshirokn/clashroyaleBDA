@@ -2,6 +2,7 @@ import os
 import numpy as np
 
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
@@ -24,12 +25,18 @@ def main(flags):
     print('Test train split completed')
     
 
-    clf = KNeighborsClassifier(
-        n_neighbors=flags.n_neighbors,
+    clf = RandomForestClassifier(
+        criterion=flags.criterion,
+        max_depth=flags.max_depth,
+        min_samples_leaf=flags.min_samples_leaf,
+        n_estimators=flags.n_estimators,
         n_jobs=flags.n_jobs
         )
-    y=y.ravel()
+
+    y_train=y_train.ravel()
+    y_test=y_test.ravel()
     print(y.shape)
+
     clf.fit(X_train, y_train)
     print('Training completed')
 
@@ -39,22 +46,40 @@ def main(flags):
     #kfold = KFold(n_splits=flags.n_splits)
     #print("Cross-validation scores:\n{}".format(cross_val_score(clf, X, y, cv=kfold)))
 
+    # Get the output path from the Valohai machines environment variables
+    outputs_dir = os.getenv('VH_OUTPUTS_DIR', './outputs')
+    if not os.path.isdir(outputs_dir):
+        os.makedirs(outputs_dir)
+    save_path = os.path.join (outputs_dir, 'forest.joblib')
+    dump(clf, save_path) 
+    print('Model was saved')
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--n_neighbors',
+        '--criterion',
+        type=str,
+        default='entropy',
+    )
+    parser.add_argument(
+        '--max_depth',
         type=int,
-        default=10,
+        default=25,
+    )
+    parser.add_argument(
+        '--min_samples_leaf',
+        type=int,
+        default=1,
+    )
+    parser.add_argument(
+        '--n_estimators',
+        type=int,
+        default=50,
     )
     parser.add_argument(
         '--n_jobs',
         type=int,
-        default=8,
-    )
-    parser.add_argument(
-        '--n_splits',
-        type=int,
-        default=3,
+        default=-1,
     )
     flags = parser.parse_args()
     return flags

@@ -9,14 +9,29 @@
     inputs:
         - name: t1
           default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01012021_WL_tagged/BattlesStaging_01012021_WL_tagged.csv
-          
+        - name: t2
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01032021_WL_tagged/BattlesStaging_01032021_WL_tagged.csv
+        - name: t3
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01042021_WL_tagged/BattlesStaging_01042021_WL_tagged.csv
+        - name: t4
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12072020_to_12262020_WL_tagged/battlesStaging_12072020_to_12262020_WL_tagged.csv
+        - name: t5
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12272020_WL_tagged/battlesStaging_12272020_WL_tagged.csv
+        - name: t6
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/battlesStaging_12282020_WL_tagged/battlesStaging_12282020_WL_tagged.csv
+        - name: t7
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12292020_WL_tagged/BattlesStaging_12292020_WL_tagged.csv
+        - name: t8
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12302020_WL_tagged/BattlesStaging_12302020_WL_tagged.csv
+        - name: t9
+          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12312020_WL_tagged/BattlesStaging_12312020_WL_tagged.csv
 
 - step:
-    name: train
+    name: train_knn
     image: sergiocristia/bda-clashroyale
     command:
         - pip install --disable-pip-version-check --quiet -r requirements.txt
-        - python train.py {parameters}
+        - python train_knn.py {parameters}
     inputs:
         - name: labels
           default: datum://017872a8-c08f-c013-febf-945f93448c8d
@@ -40,39 +55,41 @@
         default: 3
 
 
+
 - step:
-    name: model
+    name: train_forest
     image: sergiocristia/bda-clashroyale
     command:
         - pip install --disable-pip-version-check --quiet -r requirements.txt
-        - python model.py {parameters}
+        - python train_forest.py {parameters}
     inputs:
-        - name: t1
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01012021_WL_tagged/BattlesStaging_01012021_WL_tagged.csv
-        - name: t2
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01032021_WL_tagged/BattlesStaging_01032021_WL_tagged.csv
-        - name: t3
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_01042021_WL_tagged/BattlesStaging_01042021_WL_tagged.csv
-        - name: t4
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12072020_to_12262020_WL_tagged/battlesStaging_12072020_to_12262020_WL_tagged.csv
-        - name: t5
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12272020_WL_tagged/battlesStaging_12272020_WL_tagged.csv
-        - name: t6
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/battlesStaging_12282020_WL_tagged/battlesStaging_12282020_WL_tagged.csv
-        - name: t7
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12292020_WL_tagged/BattlesStaging_12292020_WL_tagged.csv
-        - name: t8
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12302020_WL_tagged/BattlesStaging_12302020_WL_tagged.csv
-        - name: t9
-          default: https://a3s.fi/swift/v1/AUTH_f8a5dbc8033343aea820c139245afe13/clashroyale/BattlesStaging_12312020_WL_tagged/BattlesStaging_12312020_WL_tagged.csv
+      - name: labels
+          default: datum://017872a8-c08f-c013-febf-945f93448c8d
+        - name: features
+          default: datum://017872a8-b76f-4ae3-01f8-699c54a5dfb1
     parameters:
-      - name: n_neighbors
+      - name: criterion
+        type: string
+        pass-as: --criterion={v}
+        description: entropy or gini
+        default: entropy
+      - name: max_depth
         type: integer
-        pass-as: --n_neighbors={v}
-        description: n_neighbors
-        default: 10
+        pass-as: --max_depth={v}
+        description: max depth
+        default: 25
+      - name: min_samples_leaf
+        type: integer
+        pass-as: --min_samples_leaf={v}
+        description: min_samples_leaf
+        default: 1
+      - name: n_estimators
+        type: integer
+        pass-as: --n_estimators={v}
+        description: n_estimators
+        default: 50
       - name: n_jobs
         type: integer
         pass-as: --n_jobs={v}
         description: n_jobs
-        default: 8
+        default: -1
