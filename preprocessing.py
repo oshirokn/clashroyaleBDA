@@ -11,14 +11,7 @@ def paths():
     INPUTS_DIR = os.getenv('VH_INPUTS_DIR', './inputs')   
     folders = [
     't1/BattlesStaging_01012021_WL_tagged.csv',
-    't2/BattlesStaging_01032021_WL_tagged.csv',
-    't3/BattlesStaging_01042021_WL_tagged.csv',
-    't4/battlesStaging_12072020_to_12262020_WL_tagged.csv',		
-    't5/battlesStaging_12272020_WL_tagged.csv',		
-    't6/battlesStaging_12282020_WL_tagged.csv',		
-    't7/BattlesStaging_12292020_WL_tagged.csv',		
-    't8/BattlesStaging_12302020_WL_tagged.csv',		
-    't9/BattlesStaging_12312020_WL_tagged.csv']
+    't2/BattlesStaging_01032021_WL_tagged.csv']
     dr=[]
     for folder in folders:
         dr.append(os.path.join(INPUTS_DIR, folder))
@@ -70,7 +63,6 @@ def save(X,y):
     print('Save done')
 
 def test_saved():
-    
     path = os.getenv('VH_INPUTS_DIR', './inputs')
     print(os.listdir(path))
 
