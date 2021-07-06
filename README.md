@@ -1,1 +1,1 @@
-# clahroyale
+# clashroyale
